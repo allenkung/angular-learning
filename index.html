@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app='store'>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet"  type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div ng-controller="StoreController as storeA">
+      <!-- Products Container -->
+      <ul class="list-group">
+        <!-- Product Container -->
+        <li class="list-group-item" ng-repeat="product in storeA.products">
+          <h3>
+            {{product.name}}
+            <em class="pull-right">{{product.price | currency}}</em>
+            <img ng-src="{{product.images[0].full}}" alt="" />
+          </h3>
+          <!-- <p ng-show="product.tag">Tag: {{product.tag}}<p> -->
+          <!-- <button ng-show="product.canPurchase">Add to Cart</button> -->
+          <section ng-inti="tab = 1" ng-controller="PanelController as panel"> 
+            <ul class="nav nav-pills">
+              <li ng-class="{active:tab == 1}">
+                <a href ng-click="panel.selectTab(1)">Description</a></li>
+              <li ng-class="{active:tab === 2}">
+                <a href ng-click="panel.selectTab(2)">Specifications</a></li>
+              <li ng-class="{active:tab === 3}">
+                <a href ng-click="panel.selectTab(3)">Reviews</a></li>
+            </ul>
+            <div class="panel" ng-show="tab === 1">
+              <h4>Description</h4> 
+              <p>{{product.description}}</p> 
+            </div>
+            <div class="panel" ng-show="tab === 2">
+              <h4>Specifications</h4> 
+              <blockquote>None yet</blockquote> 
+            </div>
+            <div class="panel" ng-show="tab === 3">
+              <h4>Reviews</h4> 
+              <blockquote>None yet</blockquote> 
+            </div>
+￼￼            {{tab}}
+           </section>
+        </li>
+      </ul>
+
+    </div>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
