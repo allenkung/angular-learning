@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet"  type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+      ￼input.ng-invalid.ng-dirty {  border-color: #FA787E;  }
+      input.ng-valid.ng-dirty {  border-color: #78FA89;  }
+    </style>
   </head>
   <body>
     <div ng-controller="StoreController as storeA">
@@ -11,36 +15,13 @@
       <ul class="list-group">
         <!-- Product Container -->
         <li class="list-group-item" ng-repeat="product in storeA.products">
-          <h3>
-            {{product.name}}
-            <em class="pull-right">{{product.price | currency}}</em>
-            <img ng-src="{{product.images[0].full}}" alt="" />
-          </h3>
+          <!-- <h3 ng-include="'product-title.html'"></h3> -->
+          <product-title></product-title>
+          <img ng-src="{{product.images[0].full}}" alt="" />
           <!-- <p ng-show="product.tag">Tag: {{product.tag}}<p> -->
           <!-- <button ng-show="product.canPurchase">Add to Cart</button> -->
-          <section ng-controller="PanelController as panel"> 
-            <ul class="nav nav-pills">
-              <li ng-class="{active:panel.isSelected(1)}">
-                <a href ng-click="panel.selectTab(1)">Description</a></li>
-              <li ng-class="{active:panel.isSelected(2)}">
-                <a href ng-click="panel.selectTab(2)">Specifications</a></li>
-              <li ng-class="{active:panel.isSelected(3}">
-                <a href ng-click="panel.selectTab(3)">Reviews</a></li>
-            </ul>
-            <div class="panel" ng-show="panel.isSelected(1)">
-              <h4>Description</h4> 
-              <p>{{product.description}}</p> 
-            </div>
-            <div class="panel" ng-show="panel.isSelected(2)">
-              <h4>Specifications</h4> 
-              <blockquote>None yet</blockquote> 
-            </div>
-            <div class="panel" ng-show="panel.isSelected(3)">
-              <h4>Reviews</h4> 
-              <blockquote>None yet</blockquote> 
-            </div>
-￼￼            {{panel.tab}}
-           </section>
+          <product-panels></product-panels>
+
         </li>
       </ul>
 
